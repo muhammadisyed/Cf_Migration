@@ -1,0 +1,14 @@
+id: terms
+label: "Terms"
+source:
+  plugin: terms_migration
+  language_code: en
+  key: cf_migrate
+process:
+  tid: tid
+  name: name
+  description: description
+  weight: weight
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: blog_tags

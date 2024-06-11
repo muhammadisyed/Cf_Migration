@@ -1,0 +1,35 @@
+id: users
+label: "Users"
+source:
+  plugin: users_migration
+  language_code: en
+  key: cf_migrate
+process:
+  uid: uid
+  name: name
+  mail: mail
+  status: status
+  roles:
+    plugin: default_value
+    default_value: 'administrator'
+  timezone: timezone
+  created:
+    plugin: format_date
+    from_format: 'U'
+    to_format: 'U'
+    source: created
+  access:
+    plugin: format_date
+    from_format: 'U'
+    to_format: 'U'
+    source: access
+  login:
+    plugin: format_date
+    from_format: 'U'
+    to_format: 'U'
+    source: login
+destination:
+  plugin: 'entity:user'
+  md5_passwords: true
+migration_dependencies:
+ required: []

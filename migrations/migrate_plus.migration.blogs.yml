@@ -1,0 +1,38 @@
+id: blogs
+label: "Blogs"
+source:
+  plugin: blogs_migration
+  language_code: en
+  key: cf_migrate
+process:
+  nid: nid
+  vid: vid
+  title: title
+  status: status
+  promote: promote
+  sticky: sticky
+  body/format:
+    plugin: default_value
+    default_value: 'full_html'
+  body/value: body_value
+  field_blog_image: images
+  field_blog_tags: tags
+  created:
+    plugin: format_date
+    from_format: 'U'
+    to_format: 'U'
+    source: created
+  changed:
+    plugin: format_date
+    from_format: 'U'
+    to_format: 'U'
+    source: changed
+  uid:
+    plugin: default_value
+    source: uid
+    default_value: 1
+destination:
+  plugin: 'entity:node'
+  default_bundle: 'blogs'
+migration_dependencies:
+ required: []

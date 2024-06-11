@@ -1,0 +1,60 @@
+id: files
+label: "Blog Images"
+source:
+  plugin: files_migration
+  language_code: en
+  key: cf_migrate
+  constants:
+    source_base_path: 'public://cf_d7_files'
+    uri_file: 'public://'
+process:
+  fid: fid
+  uid:
+    plugin: default_value
+    source: uid
+    default_value: 1
+  langcode:
+    plugin: default_value
+    default_value: 'en'
+  filename: filename
+  source_full_path:
+    -
+      plugin: concat
+      delimiter: /
+      source:
+        - constants/source_base_path
+        - source_filename
+    -
+      plugin: skip_on_empty
+      method: row
+  destination_full_path:
+    -
+      plugin: concat
+      source:
+        - constants/uri_file
+        - filepath
+    -
+      plugin: skip_on_empty
+      method: row
+  uri:
+    plugin: file_copy
+    source:
+      - '@source_full_path'
+      - '@destination_full_path'
+  filemime: filemime
+  filesize: filesize
+  created:
+    plugin: format_date
+    from_format: 'U'
+    to_format: 'U'
+    source: timestamp
+  changed:
+    plugin: format_date
+    from_format: 'U'
+    to_format: 'U'
+    source: timestamp
+  status: status
+destination:
+  plugin: 'entity:file'
+migration_dependencies:
+  required: []

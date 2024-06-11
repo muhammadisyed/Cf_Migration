@@ -1,0 +1,5 @@
+name: 'cf_migration'
+type: module
+description: 'Migrates Data from Drupal 7 Creative Faze Inc. site.'
+package: Custom
+core_version_requirement: ^10
